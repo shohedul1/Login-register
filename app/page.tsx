@@ -50,16 +50,18 @@ const Login = () => {
 
       setError("");
       router.push("/dashboard");
+      console.log(user)
+
     } catch (error) {
       console.log(error);
       setError("");
     } finally {
       setLoading(false);
 
-      setUser({
-        email: "",
-        password: "",
-      });
+      // setUser({
+      //   email: "",
+      //   password: "",
+      // });
     }
   };
   return (

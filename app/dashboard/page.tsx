@@ -1,11 +1,12 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import React from "react";
 
 const Dashboard = () => {
 
-  const {data:session} = useSession();
+  const { data: session } = useSession();
 
   return (
     <div
@@ -21,8 +22,18 @@ const Dashboard = () => {
           welcome to the Dashboard
         </span>
         {session && <span className="text-2xl tracking-normal py-10 font-semibold">{session.user?.name}</span>}
+        {session?.user?.image !== undefined ? (
+          <div className="bg-red-500 w-[100px] h-[100px] rounded-full relative flex items-center justify-center" >
+            <Image src={session.user?.image || '/default-image.jpg'} alt='image' width={80} height={80} className="rounded-full" />
+          </div>
+        ) : (
+          <div>Hello</div>
+        )}
 
-        <button onClick={()=> signOut()} className="bg-slate-950 text-white rounded text-lg w-auto px-6 py-3 uppercase">
+
+
+
+        <button onClick={() => signOut()} className="bg-slate-950 text-white rounded text-lg w-auto px-6 py-3 uppercase">
           Logout
         </button>
       </div>
